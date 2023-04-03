@@ -1,0 +1,26 @@
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<section *ngIf="token != ''" class="mail-seccess section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 col-12">
+        <!-- Error Inner -->
+        <div class="success-inner">
+          <h1><i class="fa fa-envelope"></i><span>Email Verified !</span></h1>
+          <p>
+            Your email is successfully verified. Thank you for joining our
+            platform. We are eagarly waiting for your valuable contribution to
+            the platform.
+          </p>
+          <a routerLink="/home" class="btn btn-primary btn-sm">Go Home</a>
+          <p>Kindly, follow the community guidlines.</p>
+          <br />
+          <p>Thanks,<br />Learning Platform</p>
+        </div>
+        <!--/ End Error Inner -->
+      </div>
+    </div>
+  </div>
+</section>

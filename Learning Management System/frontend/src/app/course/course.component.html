@@ -1,0 +1,125 @@
+<div class="container mt-0">
+  <h1>
+    {{ course.title }}
+  </h1>
+  <hr />
+  <div class="row">
+    <!-- <h6>
+      Created Date :
+      {{ course.createdDate }}
+    </h6> -->
+    <h6 class="col">
+      Enrollments :
+      {{ course.enrollments }}
+    </h6>
+    <h6 class="col text-end">
+      Author Name :
+      {{ response.name }}
+    </h6>
+  </div>
+  <div class="content" [innerHTML]="course.description"></div>
+</div>
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+
+<div class="container">
+  <div class="be-comment-block mt-0">
+    <hr />
+    <h1 class="comments-title mt-0 text-start">
+      Comments ({{ course.reviews.length }})
+    </h1>
+    <div class="be-comment mt-5" *ngFor="let review of course.reviews">
+      <div class="be-img-comment">
+        <a href="blog-detail-2.html">
+          <img
+            src="https://bootdey.com/img/Content/avatar/avatar1.png"
+            alt=""
+            class="be-ava-comment"
+          />
+        </a>
+      </div>
+      <div class="be-comment-content">
+        <span class="be-comment-name">
+          <h5>{{ response.name }}</h5>
+        </span>
+        <span class="be-comment-time">
+          <i class="fa fa-clock-o"></i>
+
+          {{ review.createDate }}
+        </span>
+        <div *ngFor="let id of reviewIDs">
+          <!--  -->
+          <button
+            class="btn btn-primary"
+            *ngIf="review.id == id"
+            (click)="deleteReview(id)"
+          >
+            Delete
+          </button>
+          <!---->
+        </div>
+      </div>
+      <div class="be-comment-content">
+        <span class="grade">
+          Rating :
+          {{ review.grade }} star
+        </span>
+        <p class="be-comment-text">
+          {{ review.comment }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+<div class="container">
+  <h6>Write your comments</h6>
+  <form
+    class="form-block p-10"
+    #review="ngForm"
+    (ngSubmit)="addReview(review.value)"
+  >
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <textarea
+            class="form-input"
+            name="comment"
+            ngModel
+            required=""
+            placeholder="Your text"
+          ></textarea>
+          <!-- <h6>Star rating</h6> -->
+
+          <div class="rating">
+            <input type="radio" ngModel name="grade" value="5" id="5" /><label
+              for="5"
+              >☆</label
+            >
+            <input type="radio" ngModel name="grade" value="4" id="4" /><label
+              for="4"
+              >☆</label
+            >
+            <input type="radio" ngModel name="grade" value="3" id="3" /><label
+              for="3"
+              >☆</label
+            >
+            <input type="radio" ngModel name="grade" value="2" id="2" /><label
+              for="2"
+              >☆</label
+            >
+            <input type="radio" ngModel name="grade" value="1" id="1" /><label
+              for="1"
+              >☆</label
+            >
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sml">Submit</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,141 @@
+<header class="p-3 mb-3 border-bottom">
+  <div class="container">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <!-- <a
+        href="/"
+        class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"
+      >
+        <svg
+          class="bi me-2"
+          width="40"
+          height="32"
+          role="img"
+          aria-label="Bootstrap"
+        >
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a> -->
+
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+      >
+        <li>
+          <a href="#" [routerLink]="['/home']" class="nav-link px-2 link-dark"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            [routerLink]="['/admin']"
+            *ngIf="admin"
+            class="nav-link px-2 link-dark"
+            >Admin</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            *ngIf="isUserLoggedIn"
+            [routerLink]="['/user/dashboard']"
+            class="nav-link px-2 link-dark"
+            >Dashboard</a
+          >
+        </li>
+        <!-- <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+      </ul>
+      <!--
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search"
+        />
+      </form> -->
+      <a
+        class="btn btn-info col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+        routerLink="/signup"
+        *ngIf="!isUserLoggedIn"
+      >
+        Register
+      </a>
+
+      <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <button
+          class="btn btn-primary ms-auto"
+          *ngIf="isUserLoggedIn"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+        <button
+          class="btn btn-primary ms-auto"
+          *ngIf="!isUserLoggedIn"
+          (click)="login()"
+        >
+          Login
+        </button>
+      </div>
+
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+      <a
+        class="btn btn-info col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+        [routerLink]="['/cart']"
+        (click)="direct()"
+      >
+        <i
+          class="fa"
+          style="font-size: 24px"
+          (click)="getOrder(response.customerId)"
+          >&#xf07a;</i
+        >
+        <span> {{ order.cart.items.length ? cart.items.length : 0 }} </span>
+      </a>
+
+      &nbsp; &nbsp; &nbsp;
+
+      <div class="dropdown text-end" *ngIf="isUserLoggedIn">
+        <a
+          href="#"
+          class="nav-link"
+          id="navbarScrollingDropdown"
+          [routerLink]="['/user/dashboard']"
+          role="button"
+          aria-expanded="false"
+        >
+          <!-- <div
+            class="dropdown-list-image mr-3 d-flex align-items-center bg-success justify-content-center rounded-circle text-white"
+          >
+            {{ response.name.substring(0, 1) | uppercase }}
+          </div> -->
+          <img
+            src="https://github.com/mdo.png"
+            alt="mdo"
+            width="32"
+            height="32"
+            class="rounded-circle"
+          />
+        </a>
+        <!-- <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- <script
+  src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"
+></script> -->

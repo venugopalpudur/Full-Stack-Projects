@@ -1,0 +1,449 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-4 pb-5">
+      <!-- Account Sidebar-->
+      <div class="author-card pb-3">
+        <div class="author-card-cover" style="background-color: #2e294e">
+          <!-- background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg); -->
+          <!-- <a
+            class="btn btn-style-1 btn-white btn-sm"
+            href="#"
+            data-toggle="tooltip"
+            title=""
+            data-original-title="You currently have 290 Reward points to spend"
+            ><i class="fa fa-award text-md"></i>&nbsp;290 points</a
+          > -->
+        </div>
+        <div class="author-card-profile">
+          <div class="author-card-avatar">
+            <img
+              src="https://bootdey.com/img/Content/avatar/avatar1.png"
+              alt="Daniel Adams"
+            />
+          </div>
+          <div class="author-card-details">
+            <h5 class="author-card-name text-lg">
+              {{ response.name }} {{ response.surname }}
+            </h5>
+            <span class="author-card-position">Joined February 06, 2017</span>
+          </div>
+        </div>
+      </div>
+      <div class="wizard">
+        <nav class="list-group list-group-flush">
+          <a
+            class="list-group-item"
+            (click)="tabToggle(1)"
+            [ngClass]="{ active: showTab == 1 }"
+            ><i class="fe-icon-user text-muted"></i>User Details</a
+          >
+          <a
+            class="list-group-item"
+            (click)="tabToggle(2)"
+            [ngClass]="{ active: showTab == 2 }"
+            ><i class="fe-icon-map-pin text-muted"></i>Change Password</a
+          >
+          <a
+            class="list-group-item"
+            (click)="tabToggle(3)"
+            [ngClass]="{ active: showTab == 3 }"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                <div class="d-inline-block font-weight-medium text-uppercase">
+                  Notifications
+                </div>
+              </div>
+              <span class="badge badge-secondary">{{
+                response.notifications.length
+              }}</span>
+            </div>
+          </a>
+          <!-- <div *ngFor="let role of roles">
+            <a
+              class="list-group-item"
+              *ngIf="role.userRole == 'TEACHER'"
+              (click)="tabToggle(4)"
+              [ngClass]="{ active: showTab == 4 }"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fe-icon-heart mr-1 text-muted"></i>
+                  <div class="d-inline-block font-weight-medium text-uppercase">
+                    Created Courses
+                  </div>
+                </div>
+                <span class="badge badge-secondary">{{
+                  response.createdCourses.length
+                }}</span>
+              </div>
+            </a>
+          </div> -->
+
+          <a
+            class="list-group-item"
+            (click)="tabToggle(5)"
+            [ngClass]="{ active: showTab == 5 }"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <i class="fe-icon-tag mr-1 text-muted"></i>
+                <div class="d-inline-block font-weight-medium text-uppercase">
+                  My Orders
+                </div>
+              </div>
+              <span class="badge badge-secondary">{{
+                order.viewAllOrders.length
+              }}</span>
+            </div>
+          </a>
+          <!-- <a
+            class="list-group-item"
+            (click)="tabToggle(6)"
+            [ngClass]="{ active: showTab == 6 }"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <i class="fe-icon-tag mr-1 text-muted"></i>
+                <div class="d-inline-block font-weight-medium text-uppercase">
+                  Your Reviews
+                </div>
+              </div>
+              <span class="badge badge-secondary">4</span>
+            </div>
+          </a> -->
+        </nav>
+      </div>
+    </div>
+
+    <!-- Profile Settings-->
+    <div class="col-lg-8 pb-5">
+      <form class="row" *ngIf="showTab == 1" id="userDetails">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-fn">First Name</label>
+            <input
+              name="name"
+              class="form-control"
+              type="text"
+              id="account-fn"
+              [(ngModel)]="response.name"
+              required=""
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-ln">Last Name</label>
+            <input
+              name="surname"
+              class="form-control"
+              type="text"
+              id="account-ln"
+              [(ngModel)]="response.surname"
+              required=""
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-uname">Username</label>
+            <input
+              disabled
+              name="username"
+              class="form-control"
+              type="username"
+              id="account-uname"
+              [(ngModel)]="response.username"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-email">E-mail Address</label>
+            <input
+              class="form-control"
+              name="email"
+              type="email"
+              id="account-email"
+              [(ngModel)]="response.email"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-phone">Phone Number</label>
+            <input
+              class="form-control"
+              type="text"
+              name="phone"
+              id="account-phone"
+              [(ngModel)]="response.phone"
+              required=""
+            />
+          </div>
+        </div>
+
+        <div class="col-12">
+          <hr class="mt-2 mb-3" />
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center"
+          >
+            <div class="custom-control custom-checkbox d-block">
+              <!-- <input
+                class="custom-control-input"
+                type="checkbox"
+                id="subscribe_me"
+                checked=""
+              /> -->
+              <!-- <label class="custom-control-label" for="subscribe_me"
+                >Subscribe me to Newsletter</label
+              > -->
+            </div>
+            <button
+              class="btn btn-style-1 btn-primary"
+              type="button"
+              data-toast=""
+              data-toast-position="topRight"
+              data-toast-type="success"
+              data-toast-icon="fe-icon-check-circle"
+              data-toast-title="Success!"
+              data-toast-message="Your profile updated successfuly."
+              (click)="updateProfile()"
+            >
+              Update Profile
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- change password -->
+      <form class="row" *ngIf="showTab == 2">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-pass">Old Password</label>
+            <input
+              class="form-control"
+              name="oldPassword"
+              [(ngModel)]="oldPassword"
+              type="password"
+              id="account-pass"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-pass">New Password</label>
+            <input
+              class="form-control"
+              name="newPassword"
+              [(ngModel)]="newPassword"
+              type="password"
+              id="account-pass"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-confirm-pass">Confirm Password</label>
+            <input
+              class="form-control"
+              name="confirmNewPassword"
+              [(ngModel)]="confirmNewPassword"
+              type="password"
+              id="account-confirm-pass"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <hr class="mt-2 mb-3" />
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center"
+          >
+            <button
+              class="btn btn-style-1 btn-primary"
+              type="button"
+              data-toast=""
+              data-toast-position="topRight"
+              data-toast-type="success"
+              data-toast-icon="fe-icon-check-circle"
+              data-toast-title="Success!"
+              data-toast-message="Your profile updated successfuly."
+              (click)="changePassword()"
+            >
+              Change Password
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- orders -->
+      <div *ngIf="showTab == 5">
+        <div class="accordion" id="accordionExample">
+          <div
+            class="accordion-item"
+            *ngFor="let row of order.viewAllOrders; let j = index"
+          >
+            <h2 class="accordion-header" id="headinOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <h6>{{ j + 1 }})</h6>
+                &nbsp;
+                <h6>Order Id : {{ row.orderId }}</h6>
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="container">
+                  <div class="row">
+                    <div
+                      class="col-12 col-md-6 col-md-5"
+                      *ngFor="let innerRow of row.items; let m = index"
+                    >
+                      <div class="card" *ngIf="imagesList[m]">
+                        <div class="card-body">
+                          <h4 class="card-title mb-3" style="color: blue">
+                            <!-- {{ innerRow.id }} -->
+                            {{ m + 1 }}
+                          </h4>
+
+                          <div class="col-md-12" *ngFor="let it of imagesList">
+                            <div *ngIf="it.productId == innerRow.productId">
+                              <img
+                                [src]="it.file"
+                                class="card-img-top"
+                                style="
+                                  object-fit: cover;
+                                  width: 50%;
+                                  height: 80%;
+                                  justify-content: center;
+                                "
+                                alt="..."
+                              />
+                            </div>
+                          </div>
+
+                          <!-- <p>{{ innerRow.itemId }}</p> -->
+                          <a
+                            href="/home"
+                            class="d-block text-dark my-1"
+                            style="font-size: 1.5rem; font-weight: 600"
+                            >{{ innerRow.productName }}
+                          </a>
+                          <h6>Quantity : {{ innerRow.quantity }}</h6>
+                          <h6>Each Price : {{ innerRow.price }}</h6>
+                          <div class="price text-success">
+                            <h5 class="mt-4">
+                              Total Price : ₹{{
+                                innerRow.price * innerRow.quantity
+                              }}
+                            </h5>
+                          </div>
+                          <!-- {{ innerRow.productId }} -->
+
+                          <!-- <a
+                            class="btn btn-info mt-3"
+                            (click)="viewCourse(row.courseId)"
+                            >View Order</a
+                          > -->
+                          <!-- <a class="btn btn-info">UnEnroll</a> -->
+                        </div>
+                        <div
+                          class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0"
+                        >
+                          <!-- <div class="views">Date : {{ row.createdDate }}</div> -->
+                          <!-- <div class="stats"> -->
+                          <!--<i class="far fa-eye"></i> 1347-->
+                          <!-- <i class="far fa-comment"></i> {{ row.reviews.length }} -->
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="mt-3" />
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td><h5>Total Overall Order Cost :</h5></td>
+                          <td class="text-right">
+                            <h3>
+                              <strong>₹ {{ row.total }}</strong>
+                            </h3>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOtifications -->
+      <div *ngIf="showTab == 3">
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+          integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
+          crossorigin="anonymous"
+        />
+
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-lg-9 right"
+              *ngFor="let row of response.notifications.reverse()"
+            >
+              <div class="box shadow-sm rounded bg-white mb-3">
+                <div class="box-body p-0">
+                  <div class="p-3 d-flex align-items-center osahan-post-header">
+                    <div class="dropdown-list-image mr-3">
+                      <div
+                        class="dropdown-list-image mr-3 d-flex align-items-center bg-success justify-content-center rounded-circle text-white"
+                      >
+                        {{ response.name.substring(0, 1) | uppercase }}
+                      </div>
+                    </div>
+                    <div class="font-weight-bold mr-3">
+                      <div class="mb-2">
+                        {{ row.message }}
+                      </div>
+                    </div>
+                    <span class="ml-auto mb-auto">
+                      <div class="text-right text-muted pt-1">
+                        {{ row.time }}
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </div>
+</div>
+
+<!-- <button [routerLink]="['/course']" [queryParams]="{ id: '123456' }">
+  Somewhere
+</button> -->

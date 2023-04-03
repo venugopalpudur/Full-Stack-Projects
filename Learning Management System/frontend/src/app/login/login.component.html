@@ -1,0 +1,286 @@
+<!--<h2>Login Form</h2>
+
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+  <div class="imgcontainer">
+    <img src="" alt="Avatar" class="avatar" />
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input
+      type="text"
+      ngModel
+      name="username"
+      id="username"
+      placeholder="Enter Username"
+      name="username"
+      required
+    />
+
+    <label for="psw"><b>Password</b></label>
+    <input
+      type="password"
+      ngModel
+      name="password"
+      id="password"
+      placeholder="Enter Password"
+      name="password"
+      required
+    />
+
+    <button type="submit" value="login">Login</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>-->
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+  crossorigin="anonymous"
+/>
+
+<section class="h-100">
+  <div class="container h-100">
+    <div class="row justify-content-sm-center h-100">
+      <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+        <div class="text-center my-5">
+          <!-- <img
+            src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
+            alt="logo"
+            width="100"
+          /> -->
+        </div>
+        <div class="card shadow-lg">
+          <div class="card-body p-5">
+            <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
+            <form
+              method="POST"
+              class="needs-validation"
+              novalidate=""
+              autocomplete="off"
+              #loginForm="ngForm"
+              (ngSubmit)="login(loginForm)"
+            >
+              <div class="mb-3">
+                <label class="mb-2 text-muted" for="email"
+                  >E-Mail Address</label
+                >
+                <input
+                  placeholder="Enter Username"
+                  required
+                  id="email"
+                  type="email"
+                  class="form-control"
+                  value=""
+                  required
+                  autofocus
+                  ngModel
+                  name="username"
+                />
+                <div class="invalid-feedback">Email is invalid</div>
+              </div>
+
+              <div class="mb-3">
+                <div class="mb-2 w-100">
+                  <label class="text-muted" for="password">Password</label>
+                  <a href="forgot.html" class="float-end"> Forgot Password? </a>
+                </div>
+                <input
+                  ngModel
+                  name="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  required
+                />
+                <div class="invalid-feedback">Password is required</div>
+              </div>
+
+              <div class="d-flex align-items-center">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    name="remember"
+                    id="remember"
+                    class="form-check-input"
+                  />
+                  <label for="remember" class="form-check-label"
+                    >Remember Me</label
+                  >
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary ms-auto"
+                  value="login"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer py-3 border-0">
+            <div class="text-center">
+              Don't have an account?
+              <a href="register.html" class="text-dark">Create One</a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5 text-muted">
+          Copyright &copy; 2017-2021 &mdash; Learning
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/login.js"></script>
+
+<!-- second form -->
+<!---
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<div class="container pb-5 mb-sm-4">
+  <div class="row pt-5">
+    <div class="col-md-6 pt-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h4 mb-1">Sign in</h2>
+          <div class="d-sm-flex align-items-center py-3">
+            <h3 class="h6 font-weight-semibold opacity-70 mb-3 mb-sm-2 mr-sm-3">
+              With social account:
+            </h3>
+            <div>
+              <a
+                class="social-btn sb-facebook mr-2 mb-2"
+                href="#"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="Sign in with Facebook"
+              >
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a
+                class="social-btn sb-twitter mr-2 mb-2"
+                href="#"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="Sign in with Twitter"
+              >
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a
+                class="social-btn sb-linkedin mr-2 mb-2"
+                href="#"
+                data-toggle="tooltip"
+                title=""
+                data-original-title="Sign in with LinkedIn"
+              >
+                <i class="fa fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+          <hr />
+          <h3 class="h6 font-weight-semibold opacity-70 pt-4 pb-2">
+            Or using form below
+          </h3>
+          <form class="needs-validation" novalidate="">
+            <div class="input-group form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-mail"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    ></path>
+                    <polyline points="22,6 12,13 2,6"></polyline></svg
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                type="email"
+                placeholder="Email"
+                required=""
+              />
+              <div class="invalid-feedback">
+                Please enter valid email address!
+              </div>
+            </div>
+            <div class="input-group form-group mt-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-lock"
+                  >
+                    <rect
+                      x="3"
+                      y="11"
+                      width="18"
+                      height="11"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Password"
+                required=""
+              />
+              <div class="invalid-feedback">Please enter valid password!</div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between mt-4">
+              <div class="custom-control custom-checkbox">
+                <input
+                  class="custom-control-input"
+                  type="checkbox"
+                  checked=""
+                  id="remember_me"
+                />
+                <label class="custom-control-label" for="remember_me"
+                  >Remember me</label
+                >
+              </div>
+              <a
+                class="nav-link-inline font-size-sm"
+                href="account-password-recovery.html"
+                >Forgot password?</a
+              >
+            </div>
+            <hr class="mt-4" />
+            <div class="text-right pt-4">
+              <button class="btn btn-primary" type="submit">Sign In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->

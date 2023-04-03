@@ -1,0 +1,170 @@
+<div class="container" *ngIf="allOrder.cart.items.length != 0">
+  <div class="col-sm-12 col-md-10 col-md-offset-1">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let row of allOrder.cart.items; let i = index">
+          <tr>
+            <td class="col-sm-8 col-md-6">
+              <div class="media">
+                <a class="thumbnail pull-left" href="#">
+                  <img
+                    class="media-object"
+                    src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png"
+                    style="width: 72px; height: 72px"
+                  />
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    <a href="#">{{ row.productName }}</a>
+                  </h4>
+                  <!-- <h5 class="media-heading">by <a href="#">Brand name</a></h5> -->
+                  <span>Status: </span
+                  ><span class="text-warning"><strong>In Stock</strong></span>
+                </div>
+              </div>
+            </td>
+            <!-- <td class="col-md-1 text-left">
+            <strong class="label label-danger">None</strong>
+          </td> -->
+            <td class="col-sm-1 col-md-1" style="text-align: center">
+              {{ row.quantity }}
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>₹ {{ row.price }}</strong>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>₹ {{ row.price * row.quantity }}</strong>
+            </td>
+            <td class="col-sm-1 col-md-1">
+              <button class="btn btn-danger">E-Kart</button>
+            </td>
+          </tr>
+        </ng-container>
+        <!-- <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h5>Subtotal</h5></td>
+          <td class="text-right">
+            <h5><strong>$999.99</strong></h5>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h5>Estimated shipping</h5></td>
+          <td class="text-right">
+            <h5><strong>$9.999.99</strong></h5>
+          </td>
+        </tr> -->
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><h3>Total</h3></td>
+          <td class="text-right">
+            <h3>
+              <strong>₹ {{ totalPrice }}</strong>
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <!-- <td>
+            <button type="button" class="btn btn-default">
+              <span class="fa fa-shopping-cart"></span> Continue Shopping
+            </button>
+          </td> -->
+          <td></td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-success float-right"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="placeOrder(user.customerId)"
+            >
+              Place Order <span class="fa fa-play"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Order placed successfully.</div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="reload()"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="directToHome()">
+          Home
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-100" *ngIf="allOrder.cart.items.length == 0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body cart">
+          <div class="col-sm-12 empty-cart-cls text-center">
+            <img
+              src="https://i.imgur.com/dCdflKN.png"
+              width="130"
+              height="130"
+              class="img-fluid mb-4 mr-3"
+            />
+            <h3><strong>Your Cart is Empty</strong></h3>
+            <h4>Add something to make me happy :)</h4>
+            <a
+              class="btn btn-primary cart-btn-transform m-3"
+              data-abc="true"
+              (click)="directToHome()"
+              >continue shopping</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

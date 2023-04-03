@@ -1,0 +1,162 @@
+<div class="container my-5">
+  <div class="row">
+    <div
+      class="col-lg-4 col-md-6 p-2"
+      *ngFor="let row of products; let i = index"
+    >
+      <div
+        class="p-3 border h-100"
+        style="box-shadow: 0 0 20px #eee"
+        *ngIf="imagesList[i]"
+      >
+        <div class="mb-3 pb-3 px-2 d-flex justify-content-between">
+          <div class="mb-3">
+            <!-- <small class="text-muted cat ml-2">
+              <i class="fas fa-users text-info"></i>
+              {{ row.id }}
+
+            </small> -->
+            <!-- <img
+              class="w-100 mb-3"
+              src="https://media.gettyimages.com/photos/on-the-voting-day-portrait-of-the-candidate-dr-abdullah-his-finger-is-picture-id1179614315?k=6&m=1179614315&s=612x612&w=0&h=NIBfEBJ3BC82RKAzO6cckN2GF3WL9V6dxzzuG8_NWRc="
+              alt=""
+            /> -->
+
+            <div class="d-flex align-items-center">
+              <!-- <svg
+                height="10px"
+                class="mr-1"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 300.988 300.988"
+                style="enable-background: new 0 0 300.988 300.988"
+                xml:space="preserve"
+              >
+                <g>
+                  <g>
+                    <path
+                      d="M150.494,0.001C67.511,0.001,0,67.512,0,150.495s67.511,150.493,150.494,150.493s150.494-67.511,150.494-150.493
+                    S233.476,0.001,150.494,0.001z M150.494,285.987C75.782,285.987,15,225.206,15,150.495S75.782,15.001,150.494,15.001
+                    s135.494,60.782,135.494,135.493S225.205,285.987,150.494,285.987z"
+                    />
+                    <polygon
+                      points="142.994,142.995 83.148,142.995 83.148,157.995 157.994,157.995 157.994,43.883 142.994,43.883 		"
+                    />
+                  </g>
+                </g>
+              </svg> -->
+              <!-- <small style="color: #9b5de5">6 min ago</small> -->
+            </div>
+            <!-- <p>{{ row.productId }}</p> -->
+
+            <!-- <button (click)="getImage(1)">getimage</button>
+
+            <div class="container row">
+              <div class="col-md-12">
+                <div *ngIf="retrievedImage">
+                  <img [src]="retrievedImage" class="card-img-top" alt="..." />
+                </div>
+              </div>
+            </div>  *ngFor="let item of imagesList"-->
+
+            <!-- <div class="container row"> -->
+            <!-- *ngIf="imagesList[i].productId == row.id" -->
+
+            <div class="col-md-12" *ngFor="let item of imagesList">
+              <div *ngIf="item.productId == row.id">
+                <img
+                  [src]="item.file"
+                  style="
+                    object-fit: cover;
+                    width: 70%;
+                    height: 80%;
+                    justify-content: center;
+                  "
+                  class="card-img-top"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <!-- </div> -->
+            <a
+              href="#"
+              class="d-block text-dark my-1"
+              style="font-size: 1.8rem; font-weight: 600"
+              >{{ row.productName }}
+            </a>
+            <div class="card-body mt-5 fw-bold">
+              <p class="card-text">
+                {{ row.productDescription }}
+              </p>
+            </div>
+            <div class="price text-success">
+              <h5 class="mt-4">₹{{ row.price }}</h5>
+            </div>
+
+            <div class="media-body">
+              <!-- <span class="text-warning h5"
+                ><strong>{{
+                  row.quantity == 0 ? "Out of Stocks" : "In Stocks"
+                }}</strong></span
+              > -->
+              <span
+                class="text-warning h5 text-danger"
+                *ngIf="row.quantity <= 0"
+                ><strong> Out of Stocks </strong></span
+              >
+              <span class="text-warning h5" *ngIf="row.quantity > 0"
+                ><strong> In Stocks </strong></span
+              >
+            </div>
+
+            <!-- <form>
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control mt-3"
+                  id="exampleInputPassword1"
+                  placeholder="Quantity"
+                  [(ngModel)]="name"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-info mt-3"
+                (click)="fillItems(row.id)"
+                (click)="clearName()"
+              >
+                Add to cart
+              </button>
+            </form> -->
+            <ng-container *ngIf="row.quantity > 0">
+              <input
+                type="number"
+                class="form-control mt-3"
+                id="exampleInputPassword1"
+                placeholder="Quantity"
+                [(ngModel)]="quantity"
+              />
+
+              <!-- <a class="btn btn-info mt-4" (click)="fillItems(row.id)"
+              >Add to Cart</a
+            > -->
+              <button
+                type="submit"
+                class="btn btn-info mt-3"
+                (click)="fillItems(row.id)"
+                [disabled]="quantity ? false : true"
+              >
+                Add to cart
+              </button>
+            </ng-container>
+            <!-- (quantity == 0 ? true : false) ||  -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

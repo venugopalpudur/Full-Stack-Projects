@@ -1,0 +1,9 @@
+span {
+  font-size: 14px;
+  font-weight: 900;
+  position: absolute;
+
+  border-radius: 60%;
+  height: 14px;
+  width: 8px;
+}

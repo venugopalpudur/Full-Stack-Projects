@@ -1,0 +1,548 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-4 pb-5">
+      <!-- Account Sidebar-->
+      <div class="author-card pb-3">
+        <div class="author-card-cover" style="background-color: #2e294e">
+          <!-- background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg); -->
+          <!-- <a
+            class="btn btn-style-1 btn-white btn-sm"
+            href="#"
+            data-toggle="tooltip"
+            title=""
+            data-original-title="You currently have 290 Reward points to spend"
+            ><i class="fa fa-award text-md"></i>&nbsp;290 points</a
+          > -->
+        </div>
+        <div class="author-card-profile">
+          <div class="author-card-avatar">
+            <img
+              src="https://bootdey.com/img/Content/avatar/avatar1.png"
+              alt="Daniel Adams"
+            />
+          </div>
+          <div class="author-card-details">
+            <h5 class="author-card-name text-lg">
+              {{ response.name }} {{ response.surname }}
+            </h5>
+            <span class="author-card-position">Joined February 06, 2017</span>
+          </div>
+        </div>
+      </div>
+      <div class="wizard">
+        <nav class="list-group list-group-flush">
+          <a
+            class="list-group-item"
+            (click)="tabToggle(1)"
+            [ngClass]="{ active: showTab == 1 }"
+            ><i class="fe-icon-user text-muted"></i>User Details</a
+          >
+          <a
+            class="list-group-item"
+            (click)="tabToggle(2)"
+            [ngClass]="{ active: showTab == 2 }"
+            ><i class="fe-icon-map-pin text-muted"></i>Change Password</a
+          >
+          <a
+            class="list-group-item"
+            (click)="tabToggle(3)"
+            [ngClass]="{ active: showTab == 3 }"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <i class="fe-icon-shopping-bag mr-1 text-muted"></i>
+                <div class="d-inline-block font-weight-medium text-uppercase">
+                  Notifications
+                </div>
+              </div>
+              <span class="badge badge-secondary">{{
+                response.notifications.length
+              }}</span>
+            </div>
+          </a>
+          <div *ngFor="let role of roles">
+            <a
+              class="list-group-item"
+              *ngIf="role.userRole == 'TEACHER'"
+              (click)="tabToggle(4)"
+              [ngClass]="{ active: showTab == 4 }"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fe-icon-heart mr-1 text-muted"></i>
+                  <div class="d-inline-block font-weight-medium text-uppercase">
+                    Created Courses
+                  </div>
+                </div>
+                <span class="badge badge-secondary">{{
+                  response.createdCourses.length
+                }}</span>
+              </div>
+            </a>
+          </div>
+
+          <a
+            class="list-group-item"
+            (click)="tabToggle(5)"
+            [ngClass]="{ active: showTab == 5 }"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <i class="fe-icon-tag mr-1 text-muted"></i>
+                <div class="d-inline-block font-weight-medium text-uppercase">
+                  Registered Courses
+                </div>
+              </div>
+              <span class="badge badge-secondary">{{
+                response.registeredCourses.length
+              }}</span>
+            </div>
+          </a>
+          <!-- <a
+            class="list-group-item"
+            (click)="tabToggle(6)"
+            [ngClass]="{ active: showTab == 6 }"
+          >
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <i class="fe-icon-tag mr-1 text-muted"></i>
+                <div class="d-inline-block font-weight-medium text-uppercase">
+                  Your Reviews
+                </div>
+              </div>
+              <span class="badge badge-secondary">4</span>
+            </div>
+          </a> -->
+        </nav>
+      </div>
+    </div>
+    <!-- Profile Settings-->
+    <div class="col-lg-8 pb-5">
+      <form class="row" *ngIf="showTab == 1" id="userDetails">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-fn">First Name</label>
+            <input
+              name="name"
+              class="form-control"
+              type="text"
+              id="account-fn"
+              [(ngModel)]="response.name"
+              required=""
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-ln">Last Name</label>
+            <input
+              name="surname"
+              class="form-control"
+              type="text"
+              id="account-ln"
+              [(ngModel)]="response.surname"
+              required=""
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-uname">Username</label>
+            <input
+              disabled
+              name="username"
+              class="form-control"
+              type="username"
+              id="account-uname"
+              [(ngModel)]="response.username"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-email">E-mail Address</label>
+            <input
+              class="form-control"
+              name="email"
+              type="email"
+              id="account-email"
+              [(ngModel)]="response.email"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-phone">Phone Number</label>
+            <input
+              class="form-control"
+              type="text"
+              name="phone"
+              id="account-phone"
+              [(ngModel)]="response.phone"
+              required=""
+            />
+          </div>
+        </div>
+
+        <div class="col-12">
+          <hr class="mt-2 mb-3" />
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center"
+          >
+            <div class="custom-control custom-checkbox d-block">
+              <!-- <input
+                class="custom-control-input"
+                type="checkbox"
+                id="subscribe_me"
+                checked=""
+              /> -->
+              <!-- <label class="custom-control-label" for="subscribe_me"
+                >Subscribe me to Newsletter</label
+              > -->
+            </div>
+            <button
+              class="btn btn-style-1 btn-primary"
+              type="button"
+              data-toast=""
+              data-toast-position="topRight"
+              data-toast-type="success"
+              data-toast-icon="fe-icon-check-circle"
+              data-toast-title="Success!"
+              data-toast-message="Your profile updated successfuly."
+              (click)="updateProfile()"
+            >
+              Update Profile
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- change password -->
+      <form class="row" *ngIf="showTab == 2">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-pass">Old Password</label>
+            <input
+              class="form-control"
+              name="oldPassword"
+              [(ngModel)]="oldPassword"
+              type="password"
+              id="account-pass"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-pass">New Password</label>
+            <input
+              class="form-control"
+              name="newPassword"
+              [(ngModel)]="newPassword"
+              type="password"
+              id="account-pass"
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="account-confirm-pass">Confirm Password</label>
+            <input
+              class="form-control"
+              name="confirmNewPassword"
+              [(ngModel)]="confirmNewPassword"
+              type="password"
+              id="account-confirm-pass"
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <hr class="mt-2 mb-3" />
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center"
+          >
+            <button
+              class="btn btn-style-1 btn-primary"
+              type="button"
+              data-toast=""
+              data-toast-position="topRight"
+              data-toast-type="success"
+              data-toast-icon="fe-icon-check-circle"
+              data-toast-title="Success!"
+              data-toast-message="Your profile updated successfuly."
+              (click)="changePassword()"
+            >
+              Change Password
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Registered Courses  -->
+      <div *ngIf="showTab == 5">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-12 col-md-6 col-md-5"
+              *ngFor="let row of response.registeredCourses; let j = index"
+            >
+              <div class="card">
+                <!-- shadow-lg bg-body-tertiary rounded -->
+                <!-- <img
+                  class="card-img"
+                  src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg"
+                  alt="Bologna"
+                /> -->
+                <!--<div class="card-img-overlay">
+                  <a href="#" class="btn btn-light btn-sm">Cooking</a>
+                </div>-->
+                <div class="card-body">
+                  <h2 class="card-title mb-3" style="color: blue">
+                    {{ row.title }}
+                  </h2>
+                  <small class="text-muted cat">
+                    <i class="far fa-clock text-info"></i>
+                    {{ readTimeArray[j] }} minutes
+                    <i class="fas fa-users text-info"></i>
+                    {{ row.enrollments }} Enrolled
+                  </small>
+                  <p
+                    class="card-text"
+                    [innerHTML]="row.description.substring(0, 200)"
+                  ></p>
+
+                  <a
+                    class="btn btn-info mt-3"
+                    (click)="viewCourse(row.courseId)"
+                    >View Course</a
+                  >
+                  <!-- <a class="btn btn-info">UnEnroll</a> -->
+                </div>
+                <div
+                  class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0"
+                >
+                  <div class="views">Date : {{ row.createdDate }}</div>
+                  <div class="stats">
+                    <!--<i class="far fa-eye"></i> 1347-->
+                    <i class="far fa-comment"></i> {{ row.reviews.length }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOtifications -->
+      <div *ngIf="showTab == 3">
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+          integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc="
+          crossorigin="anonymous"
+        />
+
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-lg-9 right"
+              *ngFor="let row of response.notifications.reverse()"
+            >
+              <div class="box shadow-sm rounded bg-white mb-3">
+                <div class="box-body p-0">
+                  <div class="p-3 d-flex align-items-center osahan-post-header">
+                    <div class="dropdown-list-image mr-3">
+                      <div
+                        class="dropdown-list-image mr-3 d-flex align-items-center bg-success justify-content-center rounded-circle text-white"
+                      >
+                        {{ response.name.substring(0, 1) | uppercase }}
+                      </div>
+                    </div>
+                    <div class="font-weight-bold mr-3">
+                      <div class="mb-2">
+                        {{ row.message }}
+                      </div>
+                    </div>
+                    <span class="ml-auto mb-auto">
+                      <div class="text-right text-muted pt-1">
+                        {{ row.time }}
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- created courses ---------------------------------------------------- -->
+
+      <div class="container" *ngIf="showTab == 4">
+        <div class="card-body col">
+          <a class="btn btn-info mr-2" (click)="deleteAllCourse()"
+            >Delete All</a
+          >
+          <a
+            class="btn btn-info mr-2"
+            [routerLink]="['/editor']"
+            [queryParams]="{ add: true }"
+            >Create New</a
+          >
+          <a class="btn btn-danger" style="font-weight: bold; size: 10px">
+            Total Courses: {{ response.createdCourses.length }}
+          </a>
+        </div>
+
+        <div class="row">
+          <div
+            class="col-lg-8 pb-2"
+            *ngFor="let row of response.createdCourses; let i = index"
+          >
+            <!-- class="col-12 col-lg-9 col-md-6 col-lg-4" -->
+            <div class="card">
+              <!-- shadow-lg bg-body-tertiary rounded -->
+              <div class="row">
+                <!-- <img
+                  class="card-img col-md-6"
+                  src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg"
+                  alt="Bologna"
+                /> -->
+                <!--<div class="card-img-overlay">
+              <a href="#" class="btn btn-light btn-sm">Cooking</a>
+              </div>-->
+                <div class="card-body">
+                  <small class="text-muted cat ml-2">
+                    <i class="far fa-clock text-info"></i>
+                    {{ createArray[i] }} minutes
+                    <i class="fas fa-users text-info"></i>
+                    {{ row.enrollments }} Enrolled
+                    <i class="fas fa-users text-info"></i>
+                    Date : {{ row.createdDate | json }}
+                    <!-- <i class="fas fa-users text-info"></i>
+                    Last Updated Date : {{ row.updatedDate[0] }} -->
+                  </small>
+                  <!-- <p style="font-weight: 100%; size: 10px">
+                    Course id: {{ row.courseId }}
+                  </p> -->
+                  <h3 class="card-title ml-2" style="color: blue">
+                    {{ row.title }}
+                  </h3>
+                  <p
+                    class="card-text fs-8 ml-2"
+                    [innerHTML]="row.description.substring(0, 200)"
+                  ></p>
+
+                  <p class="col-7" style="color: red">
+                    Author Name : {{ response.name }}
+                  </p>
+                  <a
+                    class="btn btn-info mr-2 ml-2"
+                    (click)="viewCourse(row.courseId)"
+                    >View</a
+                  >
+                  <a
+                    class="btn btn-info mr-2"
+                    (click)="editCourse(row.courseId)"
+                    >Edit</a
+                  >
+                  <a
+                    class="btn btn-info mr-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                    (click)="getSubscriber(row.courseId)"
+                    >Enrollment List</a
+                  >
+
+                  <div
+                    class="modal fade"
+                    id="staticBackdrop"
+                    data-bs-backdrop="static"
+                    data-bs-keyboard="false"
+                    tabindex="-1"
+                    aria-labelledby="staticBackdropLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">
+                            Modal title
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <P *ngIf="enrolled?.users == null"
+                            >No Enrollments yet !</P
+                          >
+                          <table
+                            class="table"
+                            *ngIf="enrolled?.users?.length > 0"
+                          >
+                            <thead>
+                              <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">E-mail</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="
+                                  let sub of enrolled.users;
+                                  let ii = index
+                                "
+                              >
+                                <th scope="row">{{ ii + 1 }}</th>
+                                <td>{{ sub.name }}</td>
+                                <td>{{ sub.email }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a class="btn btn-info" (click)="deleteCourse(row.courseId)"
+                    >Delete</a
+                  >
+                  <br />
+
+                  <div
+                    class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0"
+                  >
+                    <div class="views">4 days ago</div>
+                    <div class="stats">
+                      <!--<i class="far fa-eye"></i> 1347-->
+                      <i class="far fa-comment"></i> {{ row.reviews.length }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </div>
+</div>
+
+<!-- <button [routerLink]="['/course']" [queryParams]="{ id: '123456' }">
+  Somewhere
+</button> -->
